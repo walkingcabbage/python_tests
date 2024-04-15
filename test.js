@@ -155,19 +155,83 @@
 //   return answer;
 // }
 
-function solution(arr) {
-  let stk = [];
-  let i = 0;
-  while (i < arr.length) {
-    if (!stk.length) {
-      stk.push(arr[i]);
-      i++;
-    } else if (stk[stk.length - 1] < arr[i]) {
-      stk.push(arr[i]);
-      i++;
-    } else if (stk[stk.length - 1] >= arr[i]) {
-      stk.pop();
-    }
+// function solution(arr) {
+//   let stk = [];
+//   let i = 0;
+//   while (i < arr.length) {
+//     if (!stk.length) {
+//       stk.push(arr[i]);
+//       i++;
+//     } else if (stk[stk.length - 1] < arr[i]) {
+//       stk.push(arr[i]);
+//       i++;
+//     } else if (stk[stk.length - 1] >= arr[i]) {
+//       stk.pop();
+//     }
+//   }
+//   return stk;
+// }
+
+// function solution(x1, x2, x3, x4) {
+//   return (x1 || x2) && (x3 || x4);
+// }
+
+// 수 전부 같으면 => 1111 * p
+// 세 수가 같고 하나만 다르면 => (10*p+q)*(10*p+q)
+// 두 개씩 같은 값 => (p+q)*|p-q|
+// 두 개가 같고(p) 각각 다르면(q,r) => q*r
+// 전부 다르면 => 가장 작은 수
+// sort
+// function AscSorting(arr) {
+//   return arr.sort((a, b) => a - b);
+// }
+
+function solution(a, b, c, d) {
+  const diceArr = [a, b, c, d];
+  const dice = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+    6: 0,
+  };
+  diceArr.forEach((val) => {
+    dice[val]++;
+  });
+  const counts = Object.values(dice).filter((item) => item !== 0);
+  let p = 0;
+  let q = 0;
+  let r = 0;
+  //모두 같을 때
+  if (counts.includes(4)) {
+    p = Object.keys(dice).filter((key) => dice[key] !== 0)[0];
+    return 1111 * p;
   }
-  return stk;
+  //3개가 같고 1개만 다를 때
+  if (counts.includes(3) && counts.includes(1)) {
+    p = Object.keys(dice).filter((key) => dice[key] === 3)[0];
+    q = Object.keys(dice).filter((key) => dice[key] === 1)[0];
+    return (10 * Number(p) + Number(q)) ** 2;
+  }
+  //2개 같고 2개 같을 때
+  if (counts.includes(2) && !counts.includes(1)) {
+    p = Object.keys(dice).filter((key) => dice[key] === 2)[0];
+    q = Object.keys(dice).filter((key) => dice[key] === 2)[1];
+    return (Number(p) + Number(q)) * Math.abs(Number(p) - Number(q));
+  }
+  //2개 같고 1개 1개 각각 다를 때
+  if (counts.includes(2) && counts.includes(1)) {
+    p = Object.keys(dice).filter((key) => dice[key] === 2)[0];
+    q = Object.keys(dice).filter((key) => dice[key] === 1)[0];
+    r = Object.keys(dice).filter((key) => dice[key] === 1)[1];
+    return Number(q) * Number(r);
+  }
+  //전부 다를 때
+  if (counts.length === 4 && counts.includes(1)) {
+    const validArr = Object.keys(dice)
+      .filter((key) => dice[key] !== 0)
+      .map((item) => Number(item));
+    return Math.min(...validArr);
+  }
 }
