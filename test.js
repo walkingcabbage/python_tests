@@ -252,13 +252,59 @@
 //   return sum%9
 // }
 
-function solution(my_string, queries) {
-  let result = [...my_string];
-  for (const item of queries) {
-    const slicedArr = result.slice(item[0], item[1] + 1).reverse();
-    slicedArr.forEach((val, idx) => {
-      result[idx + item[0]] = val;
-    });
-  }
-  return result.join("");
-}
+// function solution(my_string, queries) {
+//   let result = [...my_string];
+//   for (const item of queries) {
+//     const slicedArr = result.slice(item[0], item[1] + 1).reverse();
+//     slicedArr.forEach((val, idx) => {
+//       result[idx + item[0]] = val;
+//     });
+//   }
+//   return result.join("");
+// }
+
+// intStrs 돌면서 각요소의
+// s로부터 l번째까지의 문자열만 추출해서
+// k보다 큰 값만 모아 새로운 문자열 생성
+// function solution(intStrs, k, s, l) {
+//   return intStrs
+//     .map((item) => {
+//       const num = [...item].splice(s, l).join("");
+//       return Number(num);
+//     })
+//     .filter((item) => {
+//       return item > k;
+//     });
+// }
+
+// function solution(my_strings, parts) {
+//   return my_strings
+//     .map((str, idx) => {
+//       const [s, e] = parts[idx];
+//       return str.slice(s, e + 1);
+//     })
+//     .join("");
+// }
+
+// function solution(my_string, n) {
+//   return my_string.slice(my_string.length - n);
+// }
+
+// function solution(my_string) {
+//   const arr = [...my_string];
+//   let result = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     result.push(arr.slice(-1 - i).join(""));
+//   }
+//   return result.sort();
+// }
+//굳이 배열로 바꾼 후 slice 하지말고 문자열 상태에서 substring 사용하자.
+
+// function solution(my_string, is_suffix) {
+//   const arr = [...my_string];
+//   let result = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     result.push(arr.slice(-1 - i).join(""));
+//   }
+//   return result.includes(is_suffix) ? 1 : 0;
+// }
