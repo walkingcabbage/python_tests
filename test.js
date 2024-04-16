@@ -308,3 +308,104 @@
 //   }
 //   return result.includes(is_suffix) ? 1 : 0;
 // }
+
+// function solution(my_string, n) {
+//   return my_string.substring(0, n);
+// }
+
+// function solution(my_string, is_prefix) {
+//   return [...my_string]
+//     .map((_, idx) => {
+//       return my_string.substring(0, idx+1);
+//     })
+//     .includes(is_prefix)
+//     ? 1
+//     : 0;
+// }
+
+// function solution(my_string, s, e) {
+//   const result = [...my_string];
+//   const copiedArr = [...my_string].slice(s, e + 1).reverse();
+//   for (i = s; i <= e; i++) {
+//     result[i] = copiedArr[i - s];
+//   }
+
+//   return result.join("");
+// }
+
+// 우선 앞에서부터 더한 변수와 뒤에서부터 더한 변수 선언
+// 배열의 길이-1 만큼 반복해야함. 안 그러면 초과됨
+// tmp에는 다음 행과 곱할 행렬이 만들어져있음, [a,b]형태로 저장시킬거
+// 바로 front 또는 back에다가 더해줘서 값을 추출해낼거임.
+// 그리고 front와 back의 값을 비교한 후 더 작은 것을 리턴!~
+// function solution(arr) {
+//   let front = 0;
+//   let back = 0;
+//   let tmp = [];
+//   for (let i = 0; i < arr.length - 1; i++) {
+//     if (i === 0) {
+//       front += arr[i][0] * arr[i][1] * arr[i + 1][1]; // 더할 값
+//       tmp = [arr[i][0], arr[i + 1][1]];
+//     } else {
+//       front += tmp[0] * tmp[1] * arr[i + 1][1];
+//       tmp = [tmp[0], arr[i + 1][1]];
+//     }
+//   }
+//   for (let i = arr.length - 1; i > 0; i--) {
+//     if (i === arr.length - 1) {
+//       back += arr[i][1] * arr[i][0] * arr[i - 1][0];
+//       tmp = [arr[i][1], arr[i - 1][0]];
+//     } else {
+//       back += tmp[1] * tmp[0] * arr[i - 1][0];
+//       tmp = [arr[i - 1][0], tmp[1]];
+//     }
+//   }
+//   return front > back ? back : front;
+// }
+// function main() {
+//   const readline = require("readline");
+//   const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout,
+//   });
+
+//   let count = 0; // 입력 횟수를 세는 변수
+//   let numArr = []; // 입력된 값을 저장할 배열
+//   let result = 0;
+//   rl.on("line", (line) => {
+//     if (count === 0) {
+//       // 첫 번째 입력: 행의 수
+//       const rows = parseInt(line);
+//       numArr = Array(rows)
+//         .fill()
+//         .map(() => []);
+//       count++; // 입력 횟수 증가
+//     } else {
+//       // 두 번째 이후 입력: 각 행의 원소
+//       const elements = line.split(" ").map(Number);
+//       numArr[count - 1] = elements;
+//       count++; // 입력 횟수 증가
+
+//       // 모든 입력을 받은 경우, 입력 종료
+//       if (count - 1 === numArr.length) {
+//         result = solution(numArr);
+//         console.log(result);
+//         rl.close();
+//       }
+//     }
+//   });
+// }
+
+// function solution(my_string, m, c) {
+//   let arr = [...my_string];
+//   let arrLen = arr.length;
+//   let newArr = [];
+//   for (let i = 0; i < arrLen / m; i++) {
+//     newArr[i] = arr.splice(0, m);
+//   }
+//   return newArr.map((val) => val[c - 1]).join("");
+// }
+
+function solution(q, r, code) {
+  return [...code].filter((_, idx) => idx % q === r).join("");
+}
