@@ -406,6 +406,58 @@
 //   return newArr.map((val) => val[c - 1]).join("");
 // }
 
-function solution(q, r, code) {
-  return [...code].filter((_, idx) => idx % q === r).join("");
+// function solution(q, r, code) {
+//   return [...code].filter((_, idx) => idx % q === r).join("");
+// }
+
+// ascii 코드
+// A~Z : 65~90
+// a~z : 97~122
+// function solution(my_string) {
+//   const initArr = [];
+//   for (let i = 65; i <= 90; i++) {
+//     const char = String.fromCharCode(i);
+//     let count = 0;
+//     [...my_string].forEach((val) => (val === char ? count++ : null));
+//     initArr.push(count);
+//   }
+//   for (let i = 97; i <= 122; i++) {
+//     const char = String.fromCharCode(i);
+//     let count = 0;
+//     [...my_string].forEach((val) => (val === char ? count++ : null));
+//     initArr.push(count);
+//   }
+//   return initArr;
+// }
+
+// 1이상 n이하의 정수들 중에서
+// k의 배수인 것들만 오름차순으로 배열로 만들기.
+// function solution(n, k) {
+//   return [...Array(n)].map((_, i) => i + 1).filter((val) => val % k === 0);
+// }
+
+// function solution(my_string, indices) {
+//   return [...my_string].filter((_, idx) => !indices.includes(idx)).join("");
+// }
+
+// function solution(start, end_num) {
+//   let result = [];
+//   for (let i = start; i >= end_num; i--) {
+//     result.push(i);
+//   }
+//   return result;
+// }
+
+//
+function solution(arr, idx) {
+  let result = 0;
+  arr.forEach((val, index) => {
+    if (result === 0 && index >= idx && val === 1) {
+      result = index;
+    } else if (result === 0 && arr.length - 1 === index) {
+      result = -1;
+    }
+  });
+  return result;
 }
+console.log(solution([0, 0, 0, 0, 0], 2));
