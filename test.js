@@ -448,16 +448,93 @@
 //   return result;
 // }
 
-//
-function solution(arr, idx) {
-  let result = 0;
-  arr.forEach((val, index) => {
-    if (result === 0 && index >= idx && val === 1) {
-      result = index;
-    } else if (result === 0 && arr.length - 1 === index) {
-      result = -1;
+// function solution(arr, idx) {
+//   let result = 0;
+//   arr.forEach((val, index) => {
+//     if (result === 0 && index >= idx && val === 1) {
+//       result = index;
+//     } else if (result === 0 && arr.length - 1 === index) {
+//       result = -1;
+//     }
+//   });
+//   return result;
+// }
+
+// n==1 > 0부터 b까지
+// n==2 > a부터 마지막까지
+// n==3 > a부터 b까지
+// n==4 > a부터 b까지 c간격으로
+// function solution(n, slicer, num_list) {
+//   const [a, b, c] = slicer;
+//   let count = 0;
+//   switch (n) {
+//     case 1:
+//       return num_list.filter((_, index) => {
+//         return index <= b;
+//       });
+//     case 2:
+//       return num_list.filter((_, index) => {
+//         return index >= a;
+//       });
+//     case 3:
+//       return num_list.filter((_, index) => {
+//         return index >= a && index <= b;
+//       });
+//     case 4:
+//       return num_list.filter((_, index) => {
+//         return index >= a && index <= b && count++ % c === 0;
+//       });
+//     default:
+//       return null;
+//   }
+// }
+
+// function solution(num_list) {
+//   let result = -1;
+//   num_list.forEach((val, idx) => {
+//     if (result === -1 && val < 0) {
+//       result = idx;
+//     }
+//   });
+//   return result;
+// }
+
+// function solution(arr, intervals) {
+//   let result = [];
+//   intervals.forEach(([start, end]) => {
+//     result.push(arr.slice(start, end + 1));
+//   });
+//   return result.flat();
+// }
+
+// function solution(arr) {
+//   let result = [-1];
+//   let startIdx = null;
+//   let endIdx = null;
+//   arr.forEach((val, idx) => {
+//     if (startIdx === null && val === 2) {
+//       startIdx = idx;
+//     }
+//   });
+//   [...arr].reverse().forEach((val, idx) => {
+//     if (endIdx === null && val === 2) {
+//       endIdx = arr.length - idx - 1;
+//     }
+//   });
+//   if (startIdx !== null && endIdx !== null) {
+//     result = [...arr].slice(startIdx, endIdx + 1);
+//   }
+//   return result;
+// }
+
+function solution(arr, query) {
+  let result = [...arr];
+  query.forEach((val, idx) => {
+    if (idx % 2 === 0) {
+      result.splice(val + 1);
+    } else {
+      result.splice(0, val);
     }
   });
   return result;
 }
-console.log(solution([0, 0, 0, 0, 0], 2));
