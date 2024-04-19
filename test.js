@@ -527,14 +527,49 @@
 //   return result;
 // }
 
-function solution(arr, query) {
-  let result = [...arr];
-  query.forEach((val, idx) => {
-    if (idx % 2 === 0) {
-      result.splice(val + 1);
-    } else {
-      result.splice(0, val);
-    }
-  });
-  return result;
+// function solution(arr, query) {
+//   let result = [...arr];
+//   query.forEach((val, idx) => {
+//     if (idx % 2 === 0) {
+//       result.splice(val + 1);
+//     } else {
+//       result.splice(0, val);
+//     }
+//   });
+//   return result;
+// }
+
+// function solution(num_list, n) {
+//   return num_list.slice(n - 1);
+// }
+
+//after + before
+// function solution(num_list, n) {
+//   const before = num_list.slice(0, n);
+//   const after = num_list.slice(n);
+//   return after.concat(before);
+// }
+
+// function solution(str_list) {
+//   let result = [];
+//   let valided = 0;
+//   str_list.forEach((val, idx) => {
+//     if (valided === 0 && val === "l") {
+//       result = str_list.slice(0, idx);
+//       valided = 1;
+//     }
+//     if (valided === 0 && val === "r") {
+//       result = str_list.slice(idx + 1);
+//       valided = 1;
+//     }
+//   });
+//   return result;
+// }
+
+// function solution(num_list, n) {
+//   return num_list.slice(0, n);
+// }
+
+function solution(num_list, n) {
+  return num_list.filter((_, idx) => idx % n === 0);
 }
