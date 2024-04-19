@@ -570,6 +570,49 @@
 //   return num_list.slice(0, n);
 // }
 
-function solution(num_list, n) {
-  return num_list.filter((_, idx) => idx % n === 0);
+// function solution(num_list, n) {
+//   return num_list.filter((_, idx) => idx % n === 0);
+// }
+
+// function solution(num_list) {
+//   let nums = [0, 0];
+//   num_list.forEach((val, idx) => {
+//     if (idx % 2) {
+//       nums[0] += val;
+//     } else {
+//       nums[1] += val;
+//     }
+//   });
+//   return Math.max(...nums);
+// }
+
+// function solution(names) {
+//   return names.filter((_, idx) => !(idx % 5));
+// }
+
+// function solution(todo_list, finished) {
+//   return todo_list.filter((_, idx) => !finished[idx]);
+// }
+
+// function solution(numbers, n) {
+//   let sum = 0;
+//   for (i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//     if (sum > n) {
+//       return sum;
+//     }
+//   }
+// }
+
+function solution(arr, queries) {
+  let result = [...arr];
+  result.forEach((_, idx) => {
+    queries.forEach((val2, idx2) => {
+      const [s, e] = val2;
+      if (idx >= s && idx <= e) {
+        result[idx]++;
+      }
+    });
+  });
+  return result;
 }
