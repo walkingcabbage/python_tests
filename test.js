@@ -604,15 +604,96 @@
 //   }
 // }
 
-function solution(arr, queries) {
-  let result = [...arr];
-  result.forEach((_, idx) => {
-    queries.forEach((val2, idx2) => {
-      const [s, e] = val2;
-      if (idx >= s && idx <= e) {
-        result[idx]++;
+// function solution(arr, queries) {
+//   let result = [...arr];
+//   result.forEach((_, idx) => {
+//     queries.forEach((val2, idx2) => {
+//       const [s, e] = val2;
+//       if (idx >= s && idx <= e) {
+//         result[idx]++;
+//       }
+//     });
+//   });
+//   return result;
+// }
+
+// function solution(arr) {
+//   return arr.map((val) => {
+//     if (val >= 50 && val % 2 === 0) {
+//       return val / 2;
+//     }
+//     if (val < 50 && val % 2 !== 0) {
+//       return val * 2;
+//     }
+//     return val;
+//   });
+// }
+
+// function solution(arr) {
+//   let prevArr = [...arr];
+//   let nextArr = [];
+//   let result = 0;
+//   while (1) {
+//     nextArr = prevArr.map((val) => {
+//       if (val >= 50 && val % 2 === 0) {
+//         return val / 2;
+//       }
+//       if (val < 50 && val % 2 !== 0) {
+//         return val * 2 + 1;
+//       }
+//       return val;
+//     });
+//     if (prevArr.every((val, idx) => val === nextArr[idx])) {
+//       return result;
+//     }
+//     prevArr = [...nextArr];
+//     result++;
+//   }
+// }
+
+// function solution(num_list) {
+//   let result = 0;
+//   const arr = num_list.map((val) => {
+//     let count = 0;
+//     while (val !== 1) {
+//       if (val % 2 === 0) {
+//         val /= 2;
+//         count++;
+//       } else {
+//         val = (val - 1) / 2;
+//         count++;
+//       }
+//     }
+//     return count;
+//   });
+//   arr.forEach((val) => {
+//     result += val;
+//   });
+//   return result;
+// }
+
+// function solution(num_list) {
+//   return num_list.length >= 11
+//     ? num_list.reduce((a, b) => a + b, 0)
+//     : num_list.reduce((a, b) => a * b, 1);
+// }
+
+function solution(myString, pat) {
+  const wholeString = [...myString.toLowerCase()];
+  const lowerPat = [...pat.toLowerCase()];
+  let result = 0;
+
+  wholeString.forEach((val, idx) => {
+    if (val === lowerPat[0] && result === 0) {
+      for (let i = 0; i < lowerPat.length; i++) {
+        if (wholeString[i + idx] !== lowerPat[i]) {
+          result = 0;
+          break;
+        }
+        result = 1;
       }
-    });
+    }
   });
   return result;
 }
+solution("AbCdEfG", "aBc");
